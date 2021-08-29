@@ -7,7 +7,10 @@ describe('isManager', () => {
     'mbrown@mycompanyemail.com',
     '9705559999'
   );
-  it('employee is an manager', () => {
+  it('confirm employee has an office number', () => {
     expect(megan.officeNumber).toEqual('9705559999');
+  });
+  it('confirm get role method works', () => {
+    expect(megan.getRole()).toEqual('Manager');
   });
 });

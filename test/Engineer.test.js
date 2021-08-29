@@ -7,7 +7,16 @@ describe('isEngineer', () => {
     'sjackson@mycompanyemail.com',
     'steveGithub'
   );
-  it('employee is an engineer', () => {
+  it('confirm employee has a Github', () => {
     expect(steve.github).toEqual('steveGithub');
+  });
+  if (
+    ('confirm get Github method works',
+    () => {
+      expect(steve.getRole()).toEqual('steveGithub');
+    })
+  );
+  it('confirm get role method works', () => {
+    expect(steve.getRole()).toEqual('Engineer');
   });
 });

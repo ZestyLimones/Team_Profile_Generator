@@ -87,7 +87,7 @@ const addTeamMembers = () => {
       },
       type: 'input',
       message: "Please enter the employee's Github username.",
-      name: github,
+      name: 'github',
     },
     {
       when: (position) => {

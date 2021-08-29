@@ -7,7 +7,13 @@ describe('isIntern', () => {
     'jthompson@mycompanyemail.com',
     'DU Bootcamp'
   );
-  it('employee is an intern', () => {
+  it('confirm employee has a school', () => {
     expect(jason.school).toEqual('DU Bootcamp');
+  });
+  it('confirm school method works', () => {
+    expect(jason.getSchool()).toEqual('DU Bootcamp');
+  });
+  it('confirm get role method works', () => {
+    expect(jason.getRole()).toEqual('Intern');
   });
 });
