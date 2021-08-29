@@ -1,8 +1,13 @@
 const Engineer = require('../lib/Engineer');
 
 describe('isEngineer', () => {
+  const steve = new Engineer(
+    'Steve',
+    '96313',
+    'sjackson@mycompanyemail.com',
+    'steveGithub'
+  );
   it('employee is an engineer', () => {
-    const steve = new Engineer('Steve', '96313', 'sjackson@mycompanyemail.com');
-    expect(steve).toEqual(true);
+    expect(steve.github).toEqual('steveGithub');
   });
 });
