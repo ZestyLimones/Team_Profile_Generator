@@ -147,19 +147,14 @@ const createTeam = (responses) => {
   }
 };
 
-// const generageHTML = () => {
-//   fs.writeFileSync()
-// }
+const generageHTML = () => {
+  //this is where the src file stuff goes
+  fs.writeFileSync();
+};
 
 const init = () => {
   promptManagerQuestions().then((responses) => {
-    // const manager = new Manager(
-    //   responses.name,
-    //   responses.id,
-    //   responses.email,
-    //   responses.officeNumber
-    // );
-    // team.push(manager);
+    generageHTML();
   });
 };
 
