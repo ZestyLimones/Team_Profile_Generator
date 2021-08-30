@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const template = require('./src/template');
 
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
@@ -147,14 +148,19 @@ const createTeam = (responses) => {
   }
 };
 
-const generageHTML = () => {
+const generageHTML = (fileName, responses) => {
   //this is where the src file stuff goes
-  fs.writeFileSync();
+  let templateContant = template(responses);
+  fs.writeFileSync(fileName, templateContant, (err) =>
+    err
+      ? console.log(err)
+      : console.log('Successfully created a HTML page with user input!')
+  );
 };
 
 const init = () => {
   promptManagerQuestions().then((responses) => {
-    generageHTML();
+    generageHTML('./dist/index.html', responses);
   });
 };
 
