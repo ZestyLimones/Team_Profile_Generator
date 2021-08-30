@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+
 const template = require('./src/template');
 
 const Employee = require('./lib/Employee');
@@ -59,8 +60,8 @@ const addTeamMembers = () => {
       if (responses.addMember === 'Yes') {
         promptTeamQuestions();
       } else {
-        // generageHTML();
         console.log(team);
+        generateHTML(team);
       }
     });
 };
@@ -72,7 +73,7 @@ const promptTeamQuestions = () => {
         type: 'list',
         message: "PLease select the employee's role.",
         choices: ['Manager', 'Engineer', 'Intern'],
-        name: 'roles',
+        name: 'role',
       },
       {
         type: 'input',
@@ -91,7 +92,7 @@ const promptTeamQuestions = () => {
       },
       {
         when: (responses) => {
-          return responses.roles === 'Manager';
+          return responses.role === 'Manager';
         },
         type: 'input',
         message: "Please enter the employee's office phone number.",
@@ -99,7 +100,7 @@ const promptTeamQuestions = () => {
       },
       {
         when: (responses) => {
-          return responses.roles === 'Engineer';
+          return responses.role === 'Engineer';
         },
         type: 'input',
         message: "Please enter the employee's Github username.",
@@ -107,7 +108,7 @@ const promptTeamQuestions = () => {
       },
       {
         when: (responses) => {
-          return responses.roles === 'Intern';
+          return responses.role === 'Intern';
         },
         type: 'input',
         message: "Please enter the employee's school name.",
@@ -121,7 +122,7 @@ const promptTeamQuestions = () => {
 };
 
 const createTeam = (responses) => {
-  if (responses.roles === 'Manager') {
+  if (responses.role === 'Manager') {
     let addEmployee = new Manager(
       responses.name,
       responses.id,
@@ -129,7 +130,7 @@ const createTeam = (responses) => {
       responses.officeNumber
     );
     team.push(addEmployee);
-  } else if (responses.roles === 'Engineer') {
+  } else if (responses.role === 'Engineer') {
     let addEmployee = new Engineer(
       responses.name,
       responses.id,
@@ -137,7 +138,7 @@ const createTeam = (responses) => {
       responses.github
     );
     team.push(addEmployee);
-  } else if (responses.roles === 'Intern') {
+  } else if (responses.role === 'Intern') {
     let addEmployee = new Intern(
       responses.name,
       responses.id,
@@ -148,9 +149,14 @@ const createTeam = (responses) => {
   }
 };
 
-const generageHTML = (fileName, responses) => {
-  //this is where the src file stuff goes
-  let templateContant = template(responses);
+//this part is broken
+
+const generateHTML = (team) => {
+  // this is where the src file stuff goes
+  console.log('inside generageHTOM', team);
+  let templateContant = template(team);
+  let fileName = './dist/index.html';
+
   fs.writeFileSync(fileName, templateContant, (err) =>
     err
       ? console.log(err)
@@ -158,10 +164,13 @@ const generageHTML = (fileName, responses) => {
   );
 };
 
+//this whole thing can probably be removed
+
 const init = () => {
-  promptManagerQuestions().then((responses) => {
-    generageHTML('./dist/index.html', responses);
-  });
+  promptManagerQuestions();
+  // .then((responses) => {
+  //   generateHTML('./dist/index.html', responses);
+  // });
 };
 
 init();

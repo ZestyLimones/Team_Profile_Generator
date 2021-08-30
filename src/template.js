@@ -1,4 +1,4 @@
-const template = (responses) => {
+const template = (team) => {
   return `    
     <!DOCTYPE html>
     <html lang="en">
@@ -21,7 +21,7 @@ const template = (responses) => {
         <div class="container">
             <div class="row">
                 <div class="main-section col-12 d-flex justify-content-center">
-                    ${createCard(responses)}
+                    ${createCard(team)}
                 </div>
             </div>
         </div>
@@ -29,19 +29,19 @@ const template = (responses) => {
     </html>`;
 };
 
-const createCard = (responses) => {
-  const createManagerCard = (Manager) => {
+const createCard = (team) => {
+  const createmanagerCard = (manager) => {
     return `
         <div class="card employee-card manager-card bg-info m-1">
             <div class="card-header text-center text-light">
-                <h2 class="card-title">${Manager.getName()}</h2>
-                <h4 class="card-title">Title: ${Manager.getRole()}</h4>
+                <h2 class="card-title">${manager.getName()}</h2>
+                <h4 class="card-title">Title: ${manager.getRole()}</h4>
             </div>
             <div class="card-body bg-light">
                 <ul class="list-group text-dark">
-                    <li class="list-group-item">ID: ${Manager.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Manager.getEmail()}">${Manager.getEmail()}</a></li>
-                    <li class="list-group-item">Office number: <a href="tel:${Manager.getofficeNumber()}">${Manager.getofficeNumber()}</a></li>
+                    <li class="list-group-item">ID: ${manager.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                    <li class="list-group-item">Office number: <a href="tel:${manager.getOfficeNumber()}">${manager.getOfficeNumber()}</a></li>
                 </ul>
             </div>
         </div>`;
@@ -80,30 +80,29 @@ const createCard = (responses) => {
         </div>
     </div>`;
   };
+  const createTeamContent = () => {
+    console.log('from src');
+    const teamContent = [];
+    console.log(team);
+    teamContent.push(
+      team
+        .filter((employee) => employee.getRole() === 'Manager')
+        .map((manager) => createmanagerCard(manager))
+    );
+    teamContent.push(
+      team
+        .filter((team) => team.getRole() === 'Engineer')
+        .map((engineer) => createmanagerCard(engineer))
+    );
+    teamContent.push(
+      team
+        .filter((team) => team.getRole() === 'Intern')
+        .map((intern) => createmanagerCard(intern))
+    );
+    return teamContent.join('');
+  };
+
+  createTeamContent();
 };
-
-const createHtmlPage = (responses) => {
-  const htmlPage = [];
-  //   htmlPage.push(
-  //     responses
-  //       .filter((employee) => employee.getRole() === 'Manager')
-  //       .map((manager) => createManagerCard(manager))
-  //   );
-
-  //     htmlPage.push(
-  //       responses
-  //         .filter((responses) => responses.getRole() === 'Engineer')
-  //         .map((engineer) => createManagerCard(engineer))
-  //     );
-  //     htmlPage.push(
-  //       responses
-  //         .filter((responses) => responses.getRole() === 'Intern')
-  //         .map((intern) => createManagerCard(intern))
-  //     );
-
-  //     return htmlPage.join('');
-};
-
-createHtmlPage();
 
 module.exports = template;
