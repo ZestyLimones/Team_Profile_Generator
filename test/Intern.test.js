@@ -8,6 +8,7 @@ describe('testing all aspects of intern constructor', () => {
   const role = 'Intern';
 
   const jason = new Intern(name, id, email, school, role);
+
   it('confirm employee has a school', () => {
     expect(jason.school).toEqual(school);
   });

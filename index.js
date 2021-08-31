@@ -60,7 +60,6 @@ const addTeamMembers = () => {
       if (responses.addMember === 'Yes') {
         promptTeamQuestions();
       } else {
-        console.log(team);
         generateHTML(team);
       }
     });
@@ -149,27 +148,10 @@ const createTeam = (responses) => {
   }
 };
 
-//this part is broken
-
 const generateHTML = (team) => {
-  // this is where the src file stuff goes
   let templateContant = template(team);
-  let fileName = './dist/index.html';
-
-  fs.writeFileSync(fileName, templateContant, (err) =>
-    err
-      ? console.log(err)
-      : console.log('Successfully created a HTML page with user input!')
-  );
+  fs.writeFileSync('./dist/index.html', templateContant, 'utf-8');
+  console.log('Successfully created a HTML page with user input!');
 };
 
-//this whole thing can probably be removed
-
-const init = () => {
-  promptManagerQuestions();
-  // .then((responses) => {
-  //   generateHTML('./dist/index.html', responses);
-  // });
-};
-
-init();
+promptManagerQuestions();
