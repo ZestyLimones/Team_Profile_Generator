@@ -1,22 +1,22 @@
 const Engineer = require('../lib/Engineer');
 
-describe('isEngineer', () => {
-  const steve = new Engineer(
-    'Steve',
-    '96313',
-    'sjackson@mycompanyemail.com',
-    'steveGithub'
-  );
+describe('testing all aspects of engineer constructor', () => {
+  const name = 'Steve';
+  const id = 96313;
+  const email = 'sjackson@mycompanyemail.com';
+  const github = 'steveGithub';
+  const role = 'Engineer';
+
+  const steve = new Engineer(name, id, email, github);
+
   it('confirm employee has a Github', () => {
-    expect(steve.github).toEqual('steveGithub');
+    expect(steve.github).toEqual(github);
   });
-  if (
-    ('confirm get Github method works',
-    () => {
-      expect(steve.getRole()).toEqual('steveGithub');
-    })
-  );
+  it('confirm get Github method works', () => {
+    expect(steve.getGithub()).toEqual(github);
+  });
+
   it('confirm get role method works', () => {
-    expect(steve.getRole()).toEqual('Engineer');
+    expect(steve.getRole()).toEqual(role);
   });
 });

@@ -1,16 +1,21 @@
 const Manager = require('../lib/Manager');
 
-describe('isManager', () => {
-  const megan = new Manager(
-    'Megan',
-    '96315',
-    'mbrown@mycompanyemail.com',
-    '9705559999'
-  );
+describe('testing all aspects of manager constructor', () => {
+  const name = 'Megan';
+  const id = 96315;
+  const email = 'mbrown@mycompanyemail.com';
+  const officeNumber = '9705559999';
+  const role = 'Manager';
+
+  const megan = new Manager(name, id, email, officeNumber);
+
   it('confirm employee has an office number', () => {
-    expect(megan.officeNumber).toEqual('9705559999');
+    expect(megan.officeNumber).toEqual(officeNumber);
+  });
+  it('confirm office number method works', () => {
+    expect(megan.getOfficeNumber()).toEqual(officeNumber);
   });
   it('confirm get role method works', () => {
-    expect(megan.getRole()).toEqual('Manager');
+    expect(megan.getRole()).toEqual(role);
   });
 });
