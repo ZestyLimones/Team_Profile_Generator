@@ -153,7 +153,6 @@ const createTeam = (responses) => {
 
 const generateHTML = (team) => {
   // this is where the src file stuff goes
-  console.log('inside generageHTOM', team);
   let templateContant = template(team);
   let fileName = './dist/index.html';
 
